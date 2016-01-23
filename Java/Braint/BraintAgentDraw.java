@@ -20,9 +20,11 @@ public class BraintAgentDraw extends PApplet {
      * @param noiseStrength
      * change angle properties of Agents
      */
-    Agent[] agents = new Agent[1000];
+    Agent[] agents = new Agent[10000];
     float strokeWidthScale;
     float noiseScale, noiseStrength;
+    int timer;
+    int rgb;
 
 
 
@@ -37,8 +39,8 @@ public class BraintAgentDraw extends PApplet {
 
 
     public void settings() {
-        //size(1920, 1080);
-        size(500,500);
+        size(1920, 1080);
+        //size(500,500);
 
 
     }
@@ -48,15 +50,35 @@ public class BraintAgentDraw extends PApplet {
         for(int i = 0; i<agents.length; i++) {
             agents[i] = new Agent(this);
         }
-        strokeWidthScale = 1;
-        noiseStrength = 6.28f;
-        noiseScale = 1f;
-
+        strokeWidthScale = 0.3f;
+        noiseStrength = 10f;
+        noiseScale = 300f;
+        timer = 0;
+        rgb = 0xff2b2b2b;
     }
 
     public void draw(){
 
+        timer ++;
 
+        if (timer > 200) timer = 1;
+
+        if (timer > 160) {
+            rgb = 0xffbbff88;
+            //rgb = 0xffa81919;
+            noiseStrength = 12;
+            noiseScale = 450;
+        //} else if ( timer > 120 ) {
+          //  rgb = 0xff7b99ae;
+            //noiseStrength = 16;
+        } else if ( timer > 80 ) {
+            rgb = 0xff7c0000;
+            noiseStrength = 7;
+            noiseScale = 200;
+        //} else if (timer > 40) {
+          //  rgb = 0xffbbff88;
+            //noiseStrength = 14;
+        }
 
 
 
@@ -89,4 +111,5 @@ public class BraintAgentDraw extends PApplet {
     }
     public float getNoiseScale() { return noiseScale; }
     public float getNoiseStrength() { return noiseStrength; }
+    public int getRGB() { return rgb; }
 }

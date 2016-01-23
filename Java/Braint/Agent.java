@@ -21,8 +21,8 @@ public class Agent {
 
         p = new PVector(bad.random(bad.width), bad.random(bad.height));
         pOld = new PVector(p.x, p.y);
-        //stepSize = bad.random(1, 5);
-        stepSize = 0.1f;
+        stepSize = bad.random(1, 5);
+        //stepSize = 0.1f;
     }
 
     public void update1(BraintAgentDraw bad) {
@@ -36,7 +36,7 @@ public class Agent {
 
         //System.out.println("(" + pOld.x + "," + pOld.y + ")" + " -> " + "(" + p.x + "," + p.y + ")" + "  Angle = " + angle);
         //System.out.println(bad.cos(angle));
-        System.out.println(bad.noise(p.x / bad.getNoiseScale(), p.y / bad.getNoiseScale()));
+        //System.out.println(bad.noise(p.x / bad.getNoiseScale(), p.y / bad.getNoiseScale()));
 
 
         if(p.x < -10) isOutside = true;
@@ -80,6 +80,7 @@ public class Agent {
         bad.strokeWeight(strokeWidth*bad.getStrokeWidthScale());
         //bad.stroke(rgb);
         //bad.stroke(125);
+        bad.stroke(bad.getRGB());
         bad.line(pOld.x, pOld.y, p.x, p.y);
         pOld.set(p);
         isOutside = false;
