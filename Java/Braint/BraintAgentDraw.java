@@ -16,9 +16,11 @@ public class BraintAgentDraw extends PApplet {
      *
      * @param noiseScale
      * change angle properties of Agents
+     * Value between 200 and 1000 is good
      *
      * @param noiseStrength
      * change angle properties of Agents
+     * Value between 6 and 30 is good
      */
     Agent[] agents = new Agent[10000];
     float strokeWidthScale;
@@ -26,7 +28,7 @@ public class BraintAgentDraw extends PApplet {
     int timerA, timerB, timerC;
     int rgb;
     float valueToRGB;
-
+    int x = 0;
 
 
     /**
@@ -48,6 +50,8 @@ public class BraintAgentDraw extends PApplet {
 
     public void setup() {
 
+        frameRate(256);
+
         for(int i = 0; i<agents.length; i++) {
             agents[i] = new Agent(this);
         }
@@ -55,6 +59,9 @@ public class BraintAgentDraw extends PApplet {
         noiseStrength = 14f;
         noiseScale = 300f;
         valueToRGB = 1;
+
+        //setVariables();
+
         rgb = decideRGBValue(valueToRGB, 1);
         timerA = 0;
         timerB = 0;
@@ -63,7 +70,10 @@ public class BraintAgentDraw extends PApplet {
 
     public void draw(){
 
-        //remove when added below codeblock
+        x++;
+        System.out.println(x);
+
+        //remove when added below todos
         timerA++;
         timerB++;
         timerC++;
@@ -150,9 +160,9 @@ public class BraintAgentDraw extends PApplet {
 
 
 
-      //**Begin rgb value**
+      //**Begin valueToRGB value**
 
-      //**End rgb value**
+      //**End valueToRGB value**
 
 
   }
