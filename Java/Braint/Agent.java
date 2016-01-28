@@ -1,10 +1,13 @@
 package Braint;
 
-import processing.core.PApplet;
-import processing.core.PVector;
+import processing.core.*;
+
 
 /**
  * Created by Saitama on 19.01.2016.
+ * TestTest
+ *
+ * Variable Werte: stepSize
  */
 public class Agent {
 
@@ -19,12 +22,13 @@ public class Agent {
         p = new PVector(bad.random(bad.width), bad.random(bad.height));
         pOld = new PVector(p.x, p.y);
         stepSize = bad.random(1, 5);
-
+        //stepSize = 0.1f;
     }
 
     public void update1(BraintAgentDraw bad) {
 
-        angle = bad.noise(p.x, p.y);
+
+        angle = bad.noise(p.x / bad.getNoiseScale(), p.y / bad.getNoiseScale()) * bad.getNoiseStrength();
         p.x += bad.cos(angle) * stepSize;
         p.y += bad.sin(angle) * stepSize;
 
@@ -43,13 +47,10 @@ public class Agent {
 
         }
 
-        /**
-         * todo : strokeWeigth(strokeWidth*length)
-         */
-//        strokeWeight(strokeWidth*length);
+
         float strokeWidth = 1;
         bad.strokeWeight(strokeWidth*bad.getStrokeWidthScale());
-        bad.stroke(bad.random(1,65535));
+        bad.stroke(bad.getRGB());
         bad.line(pOld.x, pOld.y, p.x, p.y);
         pOld.set(p);
         isOutside = false;
