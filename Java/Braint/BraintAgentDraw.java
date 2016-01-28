@@ -42,8 +42,8 @@ public class BraintAgentDraw extends PApplet {
 
 
     public void settings() {
-        size(1920, 1080);
-        //size(500,500);
+        //size(1920, 1080);
+        size(500,500);
 
 
     }
