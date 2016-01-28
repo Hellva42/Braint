@@ -1,6 +1,9 @@
 package Braint;
 
 import Braint.Agent;
+import netP5.NetAddress;
+import oscP5.OscMessage;
+import oscP5.OscP5;
 import processing.core.*;
 
 /**
@@ -25,10 +28,18 @@ public class BraintAgentDraw extends PApplet {
     Agent[] agents = new Agent[10000];
     float strokeWidthScale;
     float noiseScale, noiseStrength;
+    float oscNoiseScale, oscNoiseStrength, oscValueToRGB;
+    float oscNoiseScaleMax, oscNoiseStrengthMax, oscValueToRGBMax;
+    float oscNoiseScaleMin, oscNoiseStrengthMin, oscValueToRGBMin;
     int timerA, timerB, timerC;
     int rgb;
     float valueToRGB;
     int x = 0;
+    int a = 2;
+
+    // TODO
+	NetAddress myBroadcastLocation;
+	OscP5 oscP5;
 
 
     /**
@@ -42,37 +53,51 @@ public class BraintAgentDraw extends PApplet {
 
 
     public void settings() {
-        //size(1920, 1080);
-        size(500,500);
+        size(1920, 1080);
+//        size(500,500);
 
 
     }
 
     public void setup() {
 
-        frameRate(256);
-
+        frameRate(128);
+        oscP5 = new OscP5(this, 12000);
         for(int i = 0; i<agents.length; i++) {
             agents[i] = new Agent(this);
         }
         strokeWidthScale = 0.3f;
-        noiseStrength = 14f;
-        noiseScale = 300f;
+        noiseStrength = 6f;
+        noiseScale = 80f;
         valueToRGB = 1;
+        oscNoiseScale =80f;
+        oscNoiseStrength = 13f;
+        oscValueToRGB = 0f;
+        
+        oscNoiseScaleMax = 1f;
+        oscNoiseStrengthMax = 1f;
+        oscValueToRGBMax = 1f;
+        
+        oscNoiseScaleMin = 0f;
+        oscNoiseStrengthMin = 0f;
+        oscValueToRGBMin = 0f;
 
         //setVariables();
 
-        rgb = decideRGBValue(valueToRGB, 1);
+        rgb = decideRGBValue(valueToRGB, 2);
         timerA = 0;
         timerB = 0;
         timerC = 0;
+        
+        
     }
 
     public void draw(){
 
-        x++;
-        System.out.println(x);
-
+       x++;
+       
+        //System.out.println(x);
+/**
         //remove when added below todos
         timerA++;
         timerB++;
@@ -105,14 +130,22 @@ public class BraintAgentDraw extends PApplet {
 
         //***variable*** codeblock ending
 
-
-
+*/		
+       if(x == 25) {x = 1;
+        noiseScale = (float) getNormalizedValue(oscNoiseScale, oscNoiseScaleMax, oscNoiseScaleMin, 50, 500);
+        noiseStrength = (float) getNormalizedValue(oscNoiseStrength, oscNoiseStrengthMax, oscNoiseStrengthMin, 6, 23);
+        
+        float f = (float) getNormalizedValue(oscValueToRGB, oscValueToRGBMax, oscValueToRGBMin, 1, 0);
+        valueToRGB = oscValueToRGB;
+       
+       }
+        rgb = decideRGBValue(valueToRGB, a);
 
         //draw everything with the changed values
         for(int i = 0; i < agents.length; i++) {
             agents[i].update1(this);
+        
         }
-
 
 
         /*
@@ -204,4 +237,144 @@ public class BraintAgentDraw extends PApplet {
     public float getNoiseScale() { return noiseScale; }
     public float getNoiseStrength() { return noiseStrength; }
     public int getRGB() { return rgb; }
+    
+    public void setOscNoiseScale(float x){
+    	oscNoiseScale = x;
+    }
+    public void setOscNoiseStrength(float x){
+    	oscNoiseStrength = x;
+    }
+    public void setValueToRGB(float x){
+    	oscValueToRGB = x;
+    }
+    
+    
+    public void oscEvent(OscMessage theOscMessage) {
+
+	if (theOscMessage.checkAddrPattern("/Affective") == true) {
+
+			/*
+			 * typetag sfdddddd [0] emotivTimeStamp, boredom, excitement,
+			 * frustration, mediation, valence, excitementLongTerm [1] 40.09696
+			 * [2] 0.5487005114555359 [3] 0.0 [4] 0.7110533118247986 [5]
+			 * 0.3333112597465515 [6] 0.625 [7] 0.0
+			 */		
+			for (int i = 0; i < 6; i++) {
+
+			}
+			
+			float excitement = (float) theOscMessage.get(3).doubleValue() ;
+			setValueToRGB(excitement);
+
+
+		} else if (theOscMessage.checkAddrPattern("/rawEEG") == true) {
+
+//			string header = "COUNTER;INTERPOLATED;RAW_CQ;
+//			 3 - AF3;F7;F3; FC5; 
+//			7 - T7; P7; O1; O2;P8" +
+//          12 - T8; FC6; F4;F8; AF4;
+//			GYROX; GYROY; TIMESTAMP; ES_TIMESTAMP" +  
+//                    "FUNC_ID; FUNC_VALUE; MARKER; SYNC_SIGNAL;";
+			
+			// get(3 - 16) for all electrodes
+//			theOscMessage.print();
+			// scale
+			float scale = (float)( 
+					theOscMessage.get(3).doubleValue() 
+					+ theOscMessage.get(16).doubleValue()
+					+ theOscMessage.get(5).doubleValue()
+					+ theOscMessage.get(14).doubleValue()
+					+ theOscMessage.get(4).doubleValue()
+					+ theOscMessage.get(15).doubleValue()
+					+ theOscMessage.get(13).doubleValue()
+					+ theOscMessage.get(6).doubleValue()); //AF3
+			
+			scale = scale / 8f;
+//			if(oscNoiseScaleMax != -1.1f) {
+//				if(oscNoiseScaleMax < scale)
+//					oscNoiseScaleMax = scale;
+//			} else
+//				oscNoiseScaleMax = scale;
+//			
+//			if(oscNoiseScaleMin != -1.1f) {
+//				if(oscNoiseScaleMin > scale)
+//					oscNoiseScaleMin = scale;
+//			} else
+//				oscNoiseScaleMin = scale-0.001f;
+			
+			
+//			println(scale);
+			setOscNoiseScale(scale);
+			
+			
+			
+			// strength
+			float strength = (float) ( 
+					theOscMessage.get(8).doubleValue()
+					+ theOscMessage.get(11).doubleValue()
+					+ theOscMessage.get(10).doubleValue()
+					+ theOscMessage.get(9).doubleValue()
+					); // O2
+			
+			strength /= 4f;
+			
+//			if(oscNoiseStrengthMax != -1.1f) {
+//				if(oscNoiseStrengthMax < strength)
+//					oscNoiseStrengthMax = strength;
+//			} else
+//				oscNoiseStrengthMax = strength + 10f;
+//			
+//			if(oscNoiseStrengthMin != -1.1f) {
+//				if(oscNoiseStrengthMin > strength)
+//					oscNoiseStrengthMin = strength;
+//			} else
+//				oscNoiseStrengthMin = strength-10f;
+			
+			setOscNoiseStrength(strength);
+			// rgb
+			double sum = 0;
+			for (int i = 0; i < 14; i++) {
+				
+				if(!(i == 7 || i == 12))
+				{
+					sum+= theOscMessage.get(i+3).doubleValue();
+				}				
+			}
+			
+			float value = (float)(sum / 12.0); // FC5
+			
+//			if(oscValueToRGBMax != -1.1f) {
+//				if(oscValueToRGBMax < value)
+//					oscValueToRGBMax = value;
+//			} else
+//				oscValueToRGBMax = value + 10f;
+//			
+//			if(oscValueToRGBMin != -1.1f) {
+//				if(oscValueToRGBMin > value)
+//					oscValueToRGBMin = value;
+//			} else
+//				oscValueToRGBMin = value-10f;
+			
+//			setValueToRGB(value);
+			
+//			for (int i = 0; i < 14; i++) {
+//				
+//			}
+
+
+		} else if(theOscMessage.checkAddrPattern("/Expressiv") == true) {
+			
+//			 theOscMessage.print();
+		}
+
+	}
+    
+    public void keyPressed() {
+    	  saveFrame();
+    	}
+    
+    static public double getNormalizedValue(double value, double max, double min, double maxScaled, double minScaled)
+    {
+        return minScaled + (value - min) * (maxScaled - minScaled) / (max - min);
+    }
 }
