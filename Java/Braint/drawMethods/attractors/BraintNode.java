@@ -1,5 +1,7 @@
-package Braint;
+package Braint.drawMethods.attractors;
 
+import Braint.drawMethods.IProcessingDrawable;
+import Braint.main.BraintMainApplet;
 import GenerativeDesignSources.Node;
 
 public class BraintNode implements IProcessingDrawable {
@@ -33,13 +35,21 @@ public class BraintNode implements IProcessingDrawable {
 
 	@Override
 	public void updateAndDraw(BraintMainApplet applet) {
+		
+		float oldX = myNode.x;
+		float oldY = myNode.y;
 		myNode.update();
+		
+		if(oldX != myNode.x || oldY != myNode.y) {
 
 //		int loc = (int) (myNode.x + myNode.y * applet.width);
 
+		
+		}
+		
 		applet.fill(color);
-		applet.rect(myNode.x, myNode.y, 1, 1);
-
+		applet.rect(myNode.x, myNode.y, BraintAttractorsDraw.rectangleSize, BraintAttractorsDraw.rectangleSize);
+		
 		// try {
 		// bad.pixels[loc] = color;
 		//

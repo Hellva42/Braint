@@ -1,4 +1,6 @@
-package Braint;
+package Braint.drawMethods;
+
+import Braint.main.BraintMainApplet;
 
 public interface IProcessingDrawable {
 	

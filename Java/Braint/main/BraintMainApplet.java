@@ -1,5 +1,11 @@
-package Braint;
+package Braint.main;
 
+import Braint.drawMethods.agents.BraintAgentDraw;
+import Braint.drawMethods.attractors.BraintAttractorsDraw;
+import Braint.emoEngine.EmoEngineOSCHandler;
+import Braint.openVibe.OpenVibeCalibration;
+import Braint.openVibe.OpenVibeOscEEGPowerDataHandler;
+import Braint.util.BraintUtil;
 import netP5.NetAddress;
 import oscP5.OscMessage;
 import oscP5.OscP5;
@@ -8,14 +14,15 @@ import processing.core.PApplet;
 public class BraintMainApplet extends PApplet {
 
 	private OpenVibeOscEEGPowerDataHandler openVibeAlphaBetaPower;
+	private EmoEngineOSCHandler emoEngine;
 
 	private OpenVibeCalibration openVibeCalibration;
 
 	private NetAddress myBroadcastLocation;
 	private OscP5 oscP5;
-	private boolean useAgents = false;
-	private boolean useAttractors = true;
-	private boolean doCalibration = false;
+	private boolean useAgents = true;
+	private boolean useAttractors = false;
+	private boolean doCalibration = true;
 
 	private BraintAgentDraw braintAgent;
 	private BraintAttractorsDraw braintAttractors;
@@ -26,10 +33,12 @@ public class BraintMainApplet extends PApplet {
 
 	private static int CALIBRATION_TIME = 6000;
 
+	@Override
 	public void settings() {
 		size(1920, 1080);
 	}
 
+	@Override
 	public void setup() {
 
 		frameRate(THE_FRAMERATE);
@@ -45,6 +54,7 @@ public class BraintMainApplet extends PApplet {
 		// OSC
 		oscP5 = new OscP5(this, OSC_PORT);
 		openVibeAlphaBetaPower = new OpenVibeOscEEGPowerDataHandler();
+		emoEngine = new EmoEngineOSCHandler();
 
 		// drawing methods
 		// TODO load dynamically based on button or some shit
@@ -61,6 +71,7 @@ public class BraintMainApplet extends PApplet {
 
 	}
 
+	@Override
 	public void draw() {
 
 		if (doCalibration) {
@@ -92,6 +103,7 @@ public class BraintMainApplet extends PApplet {
 
 	}
 
+	@Override
 	public void keyPressed() {
 		saveFrame();
 	}
@@ -107,75 +119,12 @@ public class BraintMainApplet extends PApplet {
 			openVibeAlphaBetaPower.handleOSCMessage(theOscMessage);
 
 
+		} else if (msgAddr.contains(BraintUtil.OSC_EMO_ENGINE)) {
+			
+			emoEngine.handleOSCMessage(theOscMessage);
 		}
 
-		// TODO BraintCSharpAppHandler
-
-		// if (theOscMessage.checkAddrPattern("/Affective") == true) {
-		//
-		// /*
-		// * typetag sfdddddd [0] emotivTimeStamp, boredom, excitement,
-		// * frustration, mediation, valence, excitementLongTerm [1] 40.09696
-		// * [2] 0.5487005114555359 [3] 0.0 [4] 0.7110533118247986 [5]
-		// * 0.3333112597465515 [6] 0.625 [7] 0.0
-		// */
-		// for (int i = 0; i < 6; i++) {
-		//
-		// }
-		//
-		// float excitement = (float) theOscMessage.get(3).doubleValue();
-		// setValueToRGB(excitement);
-		//
-		// theOscMessage.print();
-		//
-		// } else if (theOscMessage.checkAddrPattern("/rawEEG") == true) {
-		//
-		// // string header = "COUNTER;INTERPOLATED;RAW_CQ;
-		// // 3 - AF3;F7;F3; FC5;
-		// // 7 - T7; P7; O1; O2;P8" +
-		// // 12 - T8; FC6; F4;F8; AF4;
-		// // GYROX; GYROY; TIMESTAMP; ES_TIMESTAMP" +
-		// // "FUNC_ID; FUNC_VALUE; MARKER; SYNC_SIGNAL;";
-		//
-		// // get(3 - 16) for all electrodes
-		// // theOscMessage.print();
-		// // scale
-		// float scale = (float) (theOscMessage.get(3).doubleValue() +
-		// theOscMessage.get(16).doubleValue()
-		// + theOscMessage.get(5).doubleValue() +
-		// theOscMessage.get(14).doubleValue()
-		// + theOscMessage.get(4).doubleValue() +
-		// theOscMessage.get(15).doubleValue()
-		// + theOscMessage.get(13).doubleValue() +
-		// theOscMessage.get(6).doubleValue()); // AF3
-		//
-		// scale = scale / 8f;
-		//
-		// setOscNoiseScale(scale);
-		//
-		// // strength
-		// float strength = (float) (theOscMessage.get(8).doubleValue() +
-		// theOscMessage.get(11).doubleValue()
-		// + theOscMessage.get(10).doubleValue() +
-		// theOscMessage.get(9).doubleValue()); // O2
-		//
-		// strength /= 4f;
-		//
-		// setOscNoiseStrength(strength);
-		// // rgb
-		// double sum = 0;
-		// for (int i = 0; i < 14; i++) {
-		//
-		// if (!(i == 7 || i == 12)) {
-		// sum += theOscMessage.get(i + 3).doubleValue();
-		// }
-		// }
-		//
-		// float value = (float) (sum / 12.0); // FC5
-		//
-		// } else if (theOscMessage.checkAddrPattern("/Expressiv") == true) {
-		//
-		// }
+		
 
 	}
 
@@ -185,7 +134,7 @@ public class BraintMainApplet extends PApplet {
 	 * @param args
 	 */
 	public static void main(String args[]) {
-		PApplet.main(new String[] { "--present", "Braint.BraintMainApplet" });
+		PApplet.main(new String[] { "--present", "Braint.main.BraintMainApplet" });
 	}
 
 	public OpenVibeOscEEGPowerDataHandler getPowerDataHandler() {

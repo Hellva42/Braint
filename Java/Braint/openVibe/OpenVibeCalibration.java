@@ -1,6 +1,9 @@
-package Braint;
+package Braint.openVibe;
 
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
+
+import Braint.drawMethods.IProcessingDrawable;
+import Braint.main.BraintMainApplet;
 
 public class OpenVibeCalibration implements IProcessingDrawable{
 	

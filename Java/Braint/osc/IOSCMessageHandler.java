@@ -1,4 +1,4 @@
-package Braint;
+package Braint.osc;
 
 import oscP5.OscMessage;
 

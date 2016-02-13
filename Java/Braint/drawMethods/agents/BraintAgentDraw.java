@@ -1,8 +1,14 @@
-package Braint;
+package Braint.drawMethods.agents;
 
 import java.util.Random;
 
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
+
+import Braint.drawMethods.IProcessingDrawable;
+import Braint.main.BraintMainApplet;
+import Braint.openVibe.OpenVibeCalibration;
+import Braint.openVibe.OpenVibeOscEEGPowerDataHandler;
+import Braint.util.BraintUtil;
 
 /**
  * Created by Saitama on 18.01.2016.
@@ -24,7 +30,7 @@ public class BraintAgentDraw implements IProcessingDrawable {
 	 *            change angle properties of Agents Value between 6 and 30 is
 	 *            good
 	 */
-	Agent[] agents = new Agent[10000];
+	BraintAgent[] agents = new BraintAgent[10000];
 
 	float strokeWidthScale;
 	float noiseScale, noiseStrength;
@@ -48,7 +54,7 @@ public class BraintAgentDraw implements IProcessingDrawable {
 	public void setupDrawing(BraintMainApplet applet) {
 
 		for (int i = 0; i < agents.length; i++) {
-			agents[i] = new Agent(this);
+			agents[i] = new BraintAgent(this);
 			agents[i].setupDrawing(applet);
 		}
 		strokeWidthScale = 0.3f;
@@ -154,49 +160,16 @@ public class BraintAgentDraw implements IProcessingDrawable {
 	@Override
 	public void updateAndDraw(BraintMainApplet applet) {
 		x++;
+		
+		
 
 		OpenVibeOscEEGPowerDataHandler data = applet.getPowerDataHandler();
 		OpenVibeCalibration calib = applet.getCalibrationData();
+		
+		
+		BraintAgentParameterDeterminer.determineBasedOnOpenVibeSignals(this, data,calib);
 
-		float currentAlpha = data.alpha.getMeanAllChannels();
-		float currentBeta = data.beta.getMeanAllChannels();
-		float currentRatioAlphaBeta = currentAlpha / currentBeta;
-
-		SummaryStatistics aSummary = calib.getAlphaStatisticsSummary();
-		SummaryStatistics bSummary = calib.getBetaStatisticsSummary();
-		SummaryStatistics abRSummary = calib.getRatioAlphaBetaStatisticsSummary();
-
-		valueToRGB = Math.abs(
-				(float) BraintUtil.getNormalizedValue(currentAlpha / currentBeta, aSummary.getMean() + 3 * aSummary.getVariance(),
-						aSummary.getMean() - aSummary.getStandardDeviation(), 1, 0));
-
-		// valueToRGB = alpha.getMean() / beta.getMean();
-
-		// println("rgb value"+valueToRGB);
-		// }
-		Random rnd = new Random();
-		a = 1 + rnd.nextInt(2);
-		a = 1;
-		rgb = BraintUtil.decideRGBValue(valueToRGB, a);
-		noiseStrength = (float) BraintUtil.getNormalizedValue(currentAlpha, // (alphaStatistics.getMean()
-																			// +
-																			// 3
-																			// *
-																			// alphaStatistics.getVariance())
-																			// -
-				aSummary.getMean() + 3 * aSummary.getVariance(), aSummary.getMean() - aSummary.getStandardDeviation(),
-				25, 6);
-				// control with alpha power test
-
-		// noiseStrength = 6;
-
-		noiseScale = (float) BraintUtil.getNormalizedValue(currentBeta, bSummary.getMean() + 3 * bSummary.getVariance(),
-				bSummary.getMean() - bSummary.getStandardDeviation(), 500, 50);
-
-		// noiseScale = 500;
-		// println("alpha"+ (o1 + o2 + p7 +p8));
-
-		// println("noise scale:"+noiseScale);
+		
 
 		System.out.println("noise strength:" + noiseStrength + "--- scale:" + noiseScale);
 

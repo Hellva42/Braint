@@ -1,5 +1,8 @@
-package Braint;
+package Braint.drawMethods.agents;
 
+import Braint.drawMethods.IProcessingDrawable;
+import Braint.main.BraintMainApplet;
+import processing.core.PApplet;
 import processing.core.PVector;
 
 /**
@@ -7,10 +10,8 @@ import processing.core.PVector;
  *
  * Variable Werte: stepSize
  */
-public class Agent implements IProcessingDrawable {
+public class BraintAgent implements IProcessingDrawable {
 
-	public static void main() {
-	}
 
 	public PVector p, pOld;
 	public float stepSize, angle;
@@ -18,7 +19,7 @@ public class Agent implements IProcessingDrawable {
 
 	private BraintAgentDraw braintAgent;
 
-	public Agent(BraintAgentDraw bad) {
+	public BraintAgent(BraintAgentDraw bad) {
 
 		braintAgent = bad;
 		// stepSize = 0.1f;
@@ -35,8 +36,8 @@ public class Agent implements IProcessingDrawable {
 			System.out.println("p DRAW IS NULL");
 		angle = applet.noise(p.x / braintAgent.getNoiseScale(), p.y / braintAgent.getNoiseScale())
 				* braintAgent.getNoiseStrength();
-		p.x += applet.cos(angle) * stepSize;
-		p.y += applet.sin(angle) * stepSize;
+		p.x += PApplet.cos(angle) * stepSize;
+		p.y += PApplet.sin(angle) * stepSize;
 
 		if (p.x < -10)
 			isOutside = true;

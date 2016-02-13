@@ -168,10 +168,12 @@ public class Attractor extends Node {
 		this.mode = theMode;
 	}
 
+	@Override
 	public float getStrength() {
 		return strength;
 	}
 
+	@Override
 	public void setStrength(float theStrength) {
 		this.strength = theStrength;
 	}

@@ -1,7 +1,9 @@
-package Braint;
+package Braint.openVibe;
 
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
+import Braint.osc.IOSCMessageHandler;
+import Braint.util.BraintUtil;
 import oscP5.OscMessage;
 
 public class OpenVibeOscEEGPowerDataHandler implements IOSCMessageHandler {
@@ -37,8 +39,6 @@ public class OpenVibeOscEEGPowerDataHandler implements IOSCMessageHandler {
 	}
 	
 	
-	
-	// TODO TEST OSC MESSAGE ADDRESS HOW IT LOOKS LIKE
 	@Override
 	public void handleOSCMessage(OscMessage msg) {
 
