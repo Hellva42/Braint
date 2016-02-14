@@ -20,9 +20,9 @@ public class BraintMainApplet extends PApplet {
 
 	private NetAddress myBroadcastLocation;
 	private OscP5 oscP5;
-	private boolean useAgents = true;
-	private boolean useAttractors = false;
-	private boolean doCalibration = true;
+	private boolean useAgents = false;
+	private boolean useAttractors = true;
+	private boolean doCalibration = false;
 
 	private BraintAgentDraw braintAgent;
 	private BraintAttractorsDraw braintAttractors;
