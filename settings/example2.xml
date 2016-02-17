@@ -1,0 +1,383 @@
+<root>
+   <frameRate>128</frameRate>
+   <OSCPort>12000</OSCPort>
+   <CalibrationTime>15000</CalibrationTime>
+   <openVibeAlphaSummary>
+      <n>0</n>
+      <secondMoment>
+         <n>0</n>
+         <m1>NaN</m1>
+         <dev>NaN</dev>
+         <nDev>NaN</nDev>
+         <m2>NaN</m2>
+      </secondMoment>
+      <sum>
+         <n>0</n>
+         <value>0.0</value>
+      </sum>
+      <sumsq>
+         <n>0</n>
+         <value>0.0</value>
+      </sumsq>
+      <min>
+         <n>0</n>
+         <value>NaN</value>
+      </min>
+      <max>
+         <n>0</n>
+         <value>NaN</value>
+      </max>
+      <sumLog>
+         <n>0</n>
+         <value>0.0</value>
+      </sumLog>
+      <geoMean>
+         <sumOfLogs class="org.apache.commons.math3.stat.descriptive.summary.SumOfLogs">
+            <n>0</n>
+            <value>0.0</value>
+         </sumOfLogs>
+      </geoMean>
+      <mean>
+         <moment class="org.apache.commons.math3.stat.descriptive.moment.SecondMoment">
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+      </mean>
+      <variance>
+         <moment>
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+         <isBiasCorrected>true</isBiasCorrected>
+      </variance>
+      <sumImpl class="org.apache.commons.math3.stat.descriptive.summary.Sum">
+         <n>0</n>
+         <value>0.0</value>
+      </sumImpl>
+      <sumsqImpl class="org.apache.commons.math3.stat.descriptive.summary.SumOfSquares">
+         <n>0</n>
+         <value>0.0</value>
+      </sumsqImpl>
+      <minImpl class="org.apache.commons.math3.stat.descriptive.rank.Min">
+         <n>0</n>
+         <value>NaN</value>
+      </minImpl>
+      <maxImpl class="org.apache.commons.math3.stat.descriptive.rank.Max">
+         <n>0</n>
+         <value>NaN</value>
+      </maxImpl>
+      <sumLogImpl class="org.apache.commons.math3.stat.descriptive.summary.SumOfLogs">
+         <n>0</n>
+         <value>0.0</value>
+      </sumLogImpl>
+      <geoMeanImpl class="org.apache.commons.math3.stat.descriptive.moment.GeometricMean">
+         <sumOfLogs class="org.apache.commons.math3.stat.descriptive.summary.SumOfLogs">
+            <n>0</n>
+            <value>0.0</value>
+         </sumOfLogs>
+      </geoMeanImpl>
+      <meanImpl class="org.apache.commons.math3.stat.descriptive.moment.Mean">
+         <moment class="org.apache.commons.math3.stat.descriptive.moment.SecondMoment">
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+      </meanImpl>
+      <varianceImpl class="org.apache.commons.math3.stat.descriptive.moment.Variance">
+         <moment>
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+         <isBiasCorrected>true</isBiasCorrected>
+      </varianceImpl>
+   </openVibeAlphaSummary>
+   <openVibeBetaSummary>
+      <n>0</n>
+      <secondMoment>
+         <n>0</n>
+         <m1>NaN</m1>
+         <dev>NaN</dev>
+         <nDev>NaN</nDev>
+         <m2>NaN</m2>
+      </secondMoment>
+      <sum>
+         <n>0</n>
+         <value>0.0</value>
+      </sum>
+      <sumsq>
+         <n>0</n>
+         <value>0.0</value>
+      </sumsq>
+      <min>
+         <n>0</n>
+         <value>NaN</value>
+      </min>
+      <max>
+         <n>0</n>
+         <value>NaN</value>
+      </max>
+      <sumLog>
+         <n>0</n>
+         <value>0.0</value>
+      </sumLog>
+      <geoMean>
+         <sumOfLogs class="org.apache.commons.math3.stat.descriptive.summary.SumOfLogs">
+            <n>0</n>
+            <value>0.0</value>
+         </sumOfLogs>
+      </geoMean>
+      <mean>
+         <moment class="org.apache.commons.math3.stat.descriptive.moment.SecondMoment">
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+      </mean>
+      <variance>
+         <moment>
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+         <isBiasCorrected>true</isBiasCorrected>
+      </variance>
+      <sumImpl class="org.apache.commons.math3.stat.descriptive.summary.Sum">
+         <n>0</n>
+         <value>0.0</value>
+      </sumImpl>
+      <sumsqImpl class="org.apache.commons.math3.stat.descriptive.summary.SumOfSquares">
+         <n>0</n>
+         <value>0.0</value>
+      </sumsqImpl>
+      <minImpl class="org.apache.commons.math3.stat.descriptive.rank.Min">
+         <n>0</n>
+         <value>NaN</value>
+      </minImpl>
+      <maxImpl class="org.apache.commons.math3.stat.descriptive.rank.Max">
+         <n>0</n>
+         <value>NaN</value>
+      </maxImpl>
+      <sumLogImpl class="org.apache.commons.math3.stat.descriptive.summary.SumOfLogs">
+         <n>0</n>
+         <value>0.0</value>
+      </sumLogImpl>
+      <geoMeanImpl class="org.apache.commons.math3.stat.descriptive.moment.GeometricMean">
+         <sumOfLogs class="org.apache.commons.math3.stat.descriptive.summary.SumOfLogs">
+            <n>0</n>
+            <value>0.0</value>
+         </sumOfLogs>
+      </geoMeanImpl>
+      <meanImpl class="org.apache.commons.math3.stat.descriptive.moment.Mean">
+         <moment class="org.apache.commons.math3.stat.descriptive.moment.SecondMoment">
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+      </meanImpl>
+      <varianceImpl class="org.apache.commons.math3.stat.descriptive.moment.Variance">
+         <moment>
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+         <isBiasCorrected>true</isBiasCorrected>
+      </varianceImpl>
+   </openVibeBetaSummary>
+   <openVibeAlphaBetaRatioSummary>
+      <n>0</n>
+      <secondMoment>
+         <n>0</n>
+         <m1>NaN</m1>
+         <dev>NaN</dev>
+         <nDev>NaN</nDev>
+         <m2>NaN</m2>
+      </secondMoment>
+      <sum>
+         <n>0</n>
+         <value>0.0</value>
+      </sum>
+      <sumsq>
+         <n>0</n>
+         <value>0.0</value>
+      </sumsq>
+      <min>
+         <n>0</n>
+         <value>NaN</value>
+      </min>
+      <max>
+         <n>0</n>
+         <value>NaN</value>
+      </max>
+      <sumLog>
+         <n>0</n>
+         <value>0.0</value>
+      </sumLog>
+      <geoMean>
+         <sumOfLogs class="org.apache.commons.math3.stat.descriptive.summary.SumOfLogs">
+            <n>0</n>
+            <value>0.0</value>
+         </sumOfLogs>
+      </geoMean>
+      <mean>
+         <moment class="org.apache.commons.math3.stat.descriptive.moment.SecondMoment">
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+      </mean>
+      <variance>
+         <moment>
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+         <isBiasCorrected>true</isBiasCorrected>
+      </variance>
+      <sumImpl class="org.apache.commons.math3.stat.descriptive.summary.Sum">
+         <n>0</n>
+         <value>0.0</value>
+      </sumImpl>
+      <sumsqImpl class="org.apache.commons.math3.stat.descriptive.summary.SumOfSquares">
+         <n>0</n>
+         <value>0.0</value>
+      </sumsqImpl>
+      <minImpl class="org.apache.commons.math3.stat.descriptive.rank.Min">
+         <n>0</n>
+         <value>NaN</value>
+      </minImpl>
+      <maxImpl class="org.apache.commons.math3.stat.descriptive.rank.Max">
+         <n>0</n>
+         <value>NaN</value>
+      </maxImpl>
+      <sumLogImpl class="org.apache.commons.math3.stat.descriptive.summary.SumOfLogs">
+         <n>0</n>
+         <value>0.0</value>
+      </sumLogImpl>
+      <geoMeanImpl class="org.apache.commons.math3.stat.descriptive.moment.GeometricMean">
+         <sumOfLogs class="org.apache.commons.math3.stat.descriptive.summary.SumOfLogs">
+            <n>0</n>
+            <value>0.0</value>
+         </sumOfLogs>
+      </geoMeanImpl>
+      <meanImpl class="org.apache.commons.math3.stat.descriptive.moment.Mean">
+         <moment class="org.apache.commons.math3.stat.descriptive.moment.SecondMoment">
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+      </meanImpl>
+      <varianceImpl class="org.apache.commons.math3.stat.descriptive.moment.Variance">
+         <moment>
+            <n>0</n>
+            <m1>NaN</m1>
+            <dev>NaN</dev>
+            <nDev>NaN</nDev>
+            <m2>NaN</m2>
+         </moment>
+         <incMoment>false</incMoment>
+         <isBiasCorrected>true</isBiasCorrected>
+      </varianceImpl>
+   </openVibeAlphaBetaRatioSummary>
+   <backgroundColor>155</backgroundColor>
+   <useAgentDrawMethod>true</useAgentDrawMethod>
+   <useAttractorsDrawMethod>false</useAttractorsDrawMethod>
+   <useEmoEngineData>false</useEmoEngineData>
+   <useOpenVibeData>true</useOpenVibeData>
+   <useAlphaForNoiseScale>true</useAlphaForNoiseScale>
+   <useAlphaForNoiseScaleReversed>false</useAlphaForNoiseScaleReversed>
+   <useAlphaForNoiseStrength>true</useAlphaForNoiseStrength>
+   <useAlphaForNoiseStrengthReversed>true</useAlphaForNoiseStrengthReversed>
+   <useAlphaForColor>false</useAlphaForColor>
+   <useAlphaForColorReversed>false</useAlphaForColorReversed>
+   <useBetaForNoiseScale>false</useBetaForNoiseScale>
+   <useBetaForNoiseScaleReversed>false</useBetaForNoiseScaleReversed>
+   <useBetaForNoiseStrength>false</useBetaForNoiseStrength>
+   <useBetaForNoiseStrengthReversed>false</useBetaForNoiseStrengthReversed>
+   <useBetaForColor>false</useBetaForColor>
+   <useBetaForColorReversed>false</useBetaForColorReversed>
+   <useAlphaBetaRatioForNoiseScale>false</useAlphaBetaRatioForNoiseScale>
+   <useAlphaBetaRatioForNoiseScaleReversed>false</useAlphaBetaRatioForNoiseScaleReversed>
+   <useAlphaBetaRatioForNoiseStrength>false</useAlphaBetaRatioForNoiseStrength>
+   <useAlphaBetaRatioForNoiseStrengthReversed>false</useAlphaBetaRatioForNoiseStrengthReversed>
+   <useAlphaBetaRatioForColor>false</useAlphaBetaRatioForColor>
+   <useAlphaBetaRatioForColorReversed>false</useAlphaBetaRatioForColorReversed>
+   <agentMaxNoiseScaleForPower>100.0</agentMaxNoiseScaleForPower>
+   <agentMinNoiseScaleForPower>0.0</agentMinNoiseScaleForPower>
+   <agentMaxNoiseStrengthForPower>100.0</agentMaxNoiseStrengthForPower>
+   <agentMinNoiseStrengthForPower>0.0</agentMinNoiseStrengthForPower>
+   <agentMaxColorValueForPower>5.0</agentMaxColorValueForPower>
+   <agentMinColorValueForPower>0.0</agentMinColorValueForPower>
+   <agentMaxNoiseScale>500.0</agentMaxNoiseScale>
+   <agentMinNoiseScale>50.0</agentMinNoiseScale>
+   <agentMaxNoiseStrength>26.0</agentMaxNoiseStrength>
+   <agentMinNoiseStrength>6.0</agentMinNoiseStrength>
+   <agentMaxColorValue>1.0</agentMaxColorValue>
+   <agentMinColorValue>99999.0</agentMinColorValue>
+   <alphaChannelList length="4">
+      <string>o1</string>
+      <string>o2</string>
+      <string>p7</string>
+      <string>p8</string>
+   </alphaChannelList>
+   <alphaChannelList2/>
+   <betaChannelList length="8">
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc5</string>
+      <string>fc6</string>
+   </betaChannelList>
+   <allChannelsList length="12">
+      <string>o1</string>
+      <string>o2</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc5</string>
+      <string>fc6</string>
+   </allChannelsList>
+</root>

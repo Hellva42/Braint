@@ -3,6 +3,7 @@ package Braint.openVibe;
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 import Braint.osc.IOSCMessageHandler;
+import Braint.settings.BigSettings;
 import Braint.util.BraintUtil;
 import oscP5.OscMessage;
 
@@ -10,27 +11,22 @@ public class OpenVibeOscEEGPowerDataHandler implements IOSCMessageHandler {
 	
 	
 	// samples
-	public OpenVibeChannelsSampleContainer alpha;
-	public OpenVibeChannelsSampleContainer beta;
+	public RawEEGDataSampleContainer alpha;
+	public RawEEGDataSampleContainer beta;
 	
 	
 	// overall statistics for received values
 	private SummaryStatistics alphaStatistics, betaStatistics, alphaBetaRatioStatistics;
 	
 	
-	private static String[] alphaChannelList = 
-			new String[] {BraintUtil.OSC_OPENVIBE_O1, BraintUtil.OSC_OPENVIBE_O2, BraintUtil.OSC_OPENVIBE_P7, BraintUtil.OSC_OPENVIBE_P8 };
-	
-	private static String[] betaChannelList = 
-			new String[] {BraintUtil.OSC_OPENVIBE_AF3, BraintUtil.OSC_OPENVIBE_AF4, BraintUtil.OSC_OPENVIBE_F3, BraintUtil.OSC_OPENVIBE_F4, 
-					BraintUtil.OSC_OPENVIBE_F7, BraintUtil.OSC_OPENVIBE_F8, BraintUtil.OSC_OPENVIBE_FC5, BraintUtil.OSC_OPENVIBE_FC6    };
+
 	
 	public OpenVibeOscEEGPowerDataHandler() {
-		 alpha = new OpenVibeChannelsSampleContainer(alphaChannelList);
+		 alpha = new RawEEGDataSampleContainer(BigSettings.instance().allChannelsList);
 		 
 		 
 		 
-		 beta = new OpenVibeChannelsSampleContainer(betaChannelList);
+		 beta = new RawEEGDataSampleContainer(BigSettings.instance().allChannelsList);
 		 
 		alphaBetaRatioStatistics = new SummaryStatistics();
 		alphaStatistics = new SummaryStatistics();

@@ -9,6 +9,7 @@ import Braint.main.BraintMainApplet;
 import Braint.openVibe.OpenVibeCalibration;
 import Braint.openVibe.OpenVibeOscEEGPowerDataHandler;
 import Braint.util.BraintUtil;
+import Braint.util.ThresholdBasedIntensity;
 
 /**
  * Created by Saitama on 18.01.2016.
@@ -49,6 +50,11 @@ public class BraintAgentDraw implements IProcessingDrawable {
 	long startTime = -1;
 
 	// TODO
+	private boolean useThresholds;
+
+	public void setIntensityThresholds(boolean useThresholds) {
+		this.useThresholds = useThresholds;
+	}
 
 	@Override
 	public void setupDrawing(BraintMainApplet applet) {
@@ -79,9 +85,9 @@ public class BraintAgentDraw implements IProcessingDrawable {
 		timerB = 0;
 		timerC = 0;
 
-	}
+		useThresholds = false;
 
-	
+	}
 
 	/**
 	 * takes one array with values through osc and returns this array normalizes
@@ -160,23 +166,53 @@ public class BraintAgentDraw implements IProcessingDrawable {
 	@Override
 	public void updateAndDraw(BraintMainApplet applet) {
 		x++;
-		
-		
 
-		OpenVibeOscEEGPowerDataHandler data = applet.getPowerDataHandler();
-		OpenVibeCalibration calib = applet.getCalibrationData();
-		
-		
-		BraintAgentParameterDeterminer.determineBasedOnOpenVibeSignals(this, data,calib);
+		if (useOpenVibe) {
+			OpenVibeOscEEGPowerDataHandler data = applet.getPowerDataHandler();
+			OpenVibeCalibration calib = applet.getCalibrationData();
 
-		
+//			if (useThresholds)
+//				BraintAgentParameterDeterminer.determineBasedOnOpenVibeSignalsWithIntensityThresholds(this, data,
+//						calib);
+//			else{
+//				
+//				//BraintAgentParameterDeterminer.determineBasedOnOpenVibeSignalsITHINKTHISLOOKSQUITEOK(this, data, calib);
+//			}
+			
+//			BraintAgentParameterDeterminer.determineBasedOnOpenVibeSignalsOnlyAlpha(this, data, calib);
+//			BraintAgentParameterDeterminer.useTestValues(this);
+			
+			BraintAgentParameterDeterminer.ovDetermineNoiseValues(this, data, calib);
 
-		System.out.println("noise strength:" + noiseStrength + "--- scale:" + noiseScale);
+		} else if (useEmoEngine) {
+
+			BraintAgentParameterDeterminer.determineBasedOnEmoEngine(this, applet.getEmoEngineHandler());
+
+		}
+
+		// System.out.println("noise strength:" + noiseStrength + "--- scale:" +
+		// noiseScale);
 
 		// draw everything with the changed values
 		for (int i = 0; i < agents.length; i++) {
 			agents[i].updateAndDraw(applet);
 		}
+
+	}
+
+	private boolean useOpenVibe = false;
+	private boolean useEmoEngine = false;
+
+	public void useOpenVibe(boolean useOpenVibe) {
+		this.useOpenVibe = useOpenVibe;
+		this.useEmoEngine = !useOpenVibe;
+
+	}
+
+	public void useEmoengine(boolean useEmoEngine) {
+		// TODO Auto-generated method stub
+		this.useEmoEngine = useEmoEngine;
+		this.useOpenVibe = !useEmoEngine;
 
 	}
 

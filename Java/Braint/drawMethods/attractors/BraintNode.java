@@ -46,10 +46,10 @@ public class BraintNode implements IProcessingDrawable {
 
 		
 		}
-		
+		applet.pushMatrix();
 		applet.fill(color);
 		applet.rect(myNode.x, myNode.y, BraintAttractorsDraw.rectangleSize, BraintAttractorsDraw.rectangleSize);
-		
+		applet.popMatrix();
 		// try {
 		// bad.pixels[loc] = color;
 		//

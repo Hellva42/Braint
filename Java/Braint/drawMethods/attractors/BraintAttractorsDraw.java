@@ -63,9 +63,10 @@ public class BraintAttractorsDraw implements IProcessingDrawable {
 
 				pixelNodes[c] = tmp;
 				// theNodes[loc] = tmp.getNode();
-
+				applet.pushMatrix();
 				applet.fill(applet.color(r, g, b));
 				applet.rect(x, y, rectangleSize, rectangleSize);
+				applet.popMatrix();
 
 				c++;
 			}

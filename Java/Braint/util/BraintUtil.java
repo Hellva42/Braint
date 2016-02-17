@@ -1,5 +1,7 @@
 package Braint.util;
 
+import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
+
 public class BraintUtil {
 
 	static public int OPENVIBE_CUT_OFF_NOISE_VALUE = 150;
@@ -13,18 +15,18 @@ public class BraintUtil {
 
 	// OSC Channel Names OpenVibe
 
-	static public String OSC_OPENVIBE_AF3 = "af3";
-	static public String OSC_OPENVIBE_AF4 = "af4";
-	static public String OSC_OPENVIBE_F3 = "f3";
-	static public String OSC_OPENVIBE_F4 = "f4";
-	static public String OSC_OPENVIBE_F7 = "f7";
-	static public String OSC_OPENVIBE_F8 = "f8";
-	static public String OSC_OPENVIBE_FC5 = "fc5";
-	static public String OSC_OPENVIBE_FC6 = "fc6";
-	static public String OSC_OPENVIBE_P7 = "p7";
-	static public String OSC_OPENVIBE_P8 = "p8";
-	static public String OSC_OPENVIBE_O1 = "o1";
-	static public String OSC_OPENVIBE_O2 = "o2";
+	static public final String OSC_OPENVIBE_AF3 = "af3";
+	static public final String OSC_OPENVIBE_AF4 = "af4";
+	static public final String OSC_OPENVIBE_F3 = "f3";
+	static public final String OSC_OPENVIBE_F4 = "f4";
+	static public final String OSC_OPENVIBE_F7 = "f7";
+	static public final String OSC_OPENVIBE_F8 = "f8";
+	static public final String OSC_OPENVIBE_FC5 = "fc5";
+	static public final String OSC_OPENVIBE_FC6 = "fc6";
+	static public final String OSC_OPENVIBE_P7 = "p7";
+	static public final String OSC_OPENVIBE_P8 = "p8";
+	static public final String OSC_OPENVIBE_O1 = "o1";
+	static public final String OSC_OPENVIBE_O2 = "o2";
 
 	// NOT USED TODO
 	static public String OSC_OPENVIBE_T7 = "af3";
@@ -86,6 +88,7 @@ public class BraintUtil {
 	static public int decideRGBValue(float value, int mode) {
 
 		if (mode == 1) {
+			System.out.println("decide color rgb value" + value);
 			if (value < 0.1666f)
 				return 0xffccece6;
 			if (value < 0.3333f)
@@ -118,6 +121,32 @@ public class BraintUtil {
 		}
 
 		return 0;
+	}
+	
+	
+	public static String getDecentStatisticsString(SummaryStatistics s){
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("n:\t" + s.getN());
+		sb.append("\n");
+		
+		sb.append("max:\t" + s.getMax());
+		sb.append("\n");
+		
+		sb.append("min:\t" + s.getMin());
+		sb.append("\n");
+		
+		sb.append("mean:\t" + s.getMean());
+		sb.append("\n");
+		
+		sb.append("variance:\t" + s.getVariance());
+		sb.append("\n");
+		
+		sb.append("std. deviation:\t" + s.getStandardDeviation());
+		sb.append("\n");		
+		
+		return sb.toString();
+		
 	}
 
 }

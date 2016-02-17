@@ -1,17 +1,34 @@
 package Braint.emoEngine;
 
+import Braint.openVibe.RawEEGDataSampleContainer;
 import Braint.osc.IOSCMessageHandler;
+import Braint.settings.BigSettings;
+import Braint.util.BraintUtil;
 import oscP5.OscMessage;
 
 public class EmoEngineOSCHandler implements IOSCMessageHandler {
 
 	private EmoEngineAffectiveState affState;
 	private EmoEngineExpressivState exprState;
+	
+	
+	private RawEEGDataSampleContainer raw;
+	
 
 	public EmoEngineOSCHandler() {
 
 		affState = new EmoEngineAffectiveState();
 		exprState = new EmoEngineExpressivState();
+		
+		
+//		 string header = "COUNTER;INTERPOLATED;RAW_CQ;
+//		 3 - AF3;F7;F3; FC5;
+//		 7 - T7; P7; O1; O2;P8" +
+//		 12 - T8; FC6; F4;F8; AF4;
+//		 GYROX; GYROY;
+
+		
+		raw = new RawEEGDataSampleContainer(BigSettings.instance().allChannelsList);
 
 	}
 
@@ -19,6 +36,7 @@ public class EmoEngineOSCHandler implements IOSCMessageHandler {
 	public void handleOSCMessage(OscMessage msg) {
 		// TODO BraintCSharpAppHandler
 
+		
 		if (msg.checkAddrPattern("/emoengine/affective")) {
 
 			/*
@@ -76,9 +94,10 @@ public class EmoEngineOSCHandler implements IOSCMessageHandler {
 			exprState.isLookingUp = msg.get(17).intValue()== 1 ? true : false;
 			
 
-			msg.print();
+			//msg.print();
 
-		} else if (msg.checkAddrPattern("/emoengine/rawEEG")) {
+		} else 
+		if (msg.checkAddrPattern("/emoengine/rawEEG")) {
 			
 			// TODO
 
@@ -92,32 +111,28 @@ public class EmoEngineOSCHandler implements IOSCMessageHandler {
 			// get(3 - 16) for all electrodes
 			// msg.print();
 			// scale
-			float scale = (float) (msg.get(3).doubleValue() + msg.get(16).doubleValue() + msg.get(5).doubleValue()
-					+ msg.get(14).doubleValue() + msg.get(4).doubleValue() + msg.get(15).doubleValue()
-					+ msg.get(13).doubleValue() + msg.get(6).doubleValue()); // AF3
-
-			scale = scale / 8f;
-
-			// setOscNoiseScale(scale);
-
-			// strength
-			float strength = (float) (msg.get(8).doubleValue() + msg.get(11).doubleValue() + msg.get(10).doubleValue()
-					+ msg.get(9).doubleValue()); // O2
-
-			strength /= 4f;
-
-			// setOscNoiseStrength(strength);
-			// rgb
-			double sum = 0;
-			for (int i = 0; i < 14; i++) {
-
-				if (!(i == 7 || i == 12)) {
-					sum += msg.get(i + 3).doubleValue();
-				}
-			}
-
-			float value = (float) (sum / 12.0); // FC5
-
+			
+			
+//			BraintUtil.OSC_OPENVIBE_O1, BraintUtil.OSC_OPENVIBE_O2, BraintUtil.OSC_OPENVIBE_P7, BraintUtil.OSC_OPENVIBE_P8, BraintUtil.OSC_OPENVIBE_AF3, BraintUtil.OSC_OPENVIBE_AF4, BraintUtil.OSC_OPENVIBE_F3, BraintUtil.OSC_OPENVIBE_F4, 
+//			BraintUtil.OSC_OPENVIBE_F7, BraintUtil.OSC_OPENVIBE_F8, BraintUtil.OSC_OPENVIBE_FC5, BraintUtil.OSC_OPENVIBE_FC6;
+			
+		
+			
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_AF3, (float) msg.get(3).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_F7, (float) msg.get(4).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_F3, (float) msg.get(5).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_FC5, (float) msg.get(6).doubleValue());
+//			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_T7, (float) msg.get(7).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_P7, (float) msg.get(8).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_O1, (float) msg.get(9).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_O2, (float) msg.get(10).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_P8, (float) msg.get(11).doubleValue());
+//			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_T8, (float) msg.get(12).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_FC6, (float) msg.get(13).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_F4, (float) msg.get(14).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_F8, (float) msg.get(15).doubleValue());
+			raw.addChannelValue(BraintUtil.OSC_OPENVIBE_AF4, (float) msg.get(16).doubleValue());
+			
 		}
 
 	}
@@ -129,5 +144,10 @@ public class EmoEngineOSCHandler implements IOSCMessageHandler {
 	public EmoEngineExpressivState getExprState() {
 		return exprState;
 	}
+	
+	public RawEEGDataSampleContainer getRaw() {
+		return raw;
+	}
+
 
 }
