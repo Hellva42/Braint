@@ -125,7 +125,7 @@ public class CalibrationControl {
 	String CalibrationHeading = "Calibration with OpenVibe";
 
 	@ControlElement(properties = { "min=5",
-			"max=300" }, x = 0, y = MainGui.default_GUI_Element_Height, label = "Calibration Time (seconds)")
+			"max=60" }, x = 0, y = MainGui.default_GUI_Element_Height, label = "Calibration Time (seconds)")
 	public int calibrationTime = BigSettings.instance().CALIBRATION_TIME;
 
 	public void calibrationTime(int value) {

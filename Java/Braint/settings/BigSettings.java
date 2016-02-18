@@ -9,7 +9,6 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import Braint.util.BraintUtil;
-import processing.core.PImage;
 
 @Root(name = "root")
 public class BigSettings {
@@ -38,6 +37,12 @@ public class BigSettings {
 		
 		instance = s;
 	}
+	
+	@Element(name = "agenCount")
+	public int agentCount = 10000;
+	
+	@Element(name = "agentStrokeWidth")
+	public float agentStrokeWidth = 1;
 
 	@Element(name = "frameRate")
 	public int THE_FRAMERATE = 128;
@@ -62,6 +67,9 @@ public class BigSettings {
 
 	@Element(name = "useAgentDrawMethod")
 	public boolean useAgents = true;
+	
+	@Element(name = "useAgentDrawMethod2")
+	public boolean useAgents2 = false;
 
 	@Element(name = "useAttractorsDrawMethod")
 	public boolean useAttractors = false;

@@ -1,19 +1,17 @@
 package Braint.gui;
 
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
-import java.util.List;
-
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.TopLevelElement;
 
 import Braint.drawMethods.IProcessingDrawable;
 import Braint.main.BraintMainApplet;
 import Braint.openVibe.OpenVibeCalibration;
 import Braint.settings.BigSettings;
-import Braint.util.BraintUtil;
-import controlP5.*;
+import controlP5.Button;
+import controlP5.ColorWheel;
+import controlP5.ControlEvent;
+import controlP5.ControlListener;
+import controlP5.ControlP5;
+import controlP5.Tab;
 
 public class MainGui implements IProcessingDrawable {
 
@@ -96,22 +94,22 @@ public class MainGui implements IProcessingDrawable {
 		// attractor settings
 		cp5.getDefaultTab().setLabel("General Settings");
 
-		allTabs.add(cp5.getDefaultTab());
-		allTabs.add(cp5.addTab("OpenVibe Calibration"));
-		// allTabs.add(cp5.addTab("Emo Engine Settings"));
-		allTabs.add(cp5.addTab("Draw with Agents"));
+//		allTabs.add(cp5.getDefaultTab());
+//		allTabs.add(cp5.addTab("OpenVibe Calibration"));
+//		// allTabs.add(cp5.addTab("Emo Engine Settings"));
+//		allTabs.add(cp5.addTab("Draw with Agents"));
 
-		tabCount = allTabs.size();
-
-		defaultTabWidth = ((1600 - tabCount / 2 * 10) / tabCount);
-
-		for (Tab tab : allTabs) {
-
-			tab.setHeight(defaultTabHeight);
-			tab.setWidth(defaultTabWidth);
-			tab.getCaptionLabel().setSize(24);
-
-		}
+//		tabCount = allTabs.size();
+//
+//		defaultTabWidth = ((1600 - tabCount / 2 * 10) / tabCount);
+//
+//		for (Tab tab : allTabs) {
+//
+//			tab.setHeight(defaultTabHeight);
+//			tab.setWidth(defaultTabWidth);
+//			tab.getCaptionLabel().setSize(24);
+//
+//		}
 
 		cp5.addControllersFor("mainGui", this);
 
@@ -151,6 +149,37 @@ public class MainGui implements IProcessingDrawable {
 
 			}
 		});
+		
+		
+		Button one = cp5.addButton("Start Drawing").setSize(100, 30).setPosition(guiWidth - 250, guiHeight - 250); // .setLabel("Start
+
+		one.addListener(new ControlListener() {
+
+			@Override
+			public void controlEvent(ControlEvent arg0) {
+				applet.startDrawing();
+			}
+		});
+		
+		Button two = cp5.addButton("Save Settings").setSize(100, 30).setPosition(guiWidth - 250, guiHeight - 200); // .setLabel("Start
+
+		two.addListener(new ControlListener() {
+
+			@Override
+			public void controlEvent(ControlEvent arg0) {
+				applet.saveSettings();
+			}
+		});
+		
+//		Button three = cp5.addButton("Load Settings").setSize(100, 30).setPosition(guiWidth - 250, guiHeight - 150); // .setLabel("Start
+//
+//		three.addListener(new ControlListener() {
+//
+//			@Override
+//			public void controlEvent(ControlEvent arg0) {
+//				applet.loadSettings();
+//			}
+//		});
 
 	}
 
@@ -172,7 +201,7 @@ public class MainGui implements IProcessingDrawable {
 
 		// GUI Border
 		applet.pushMatrix();
-		applet.noFill();
+		applet.fill(40);
 		applet.stroke(200);
 		applet.rect(topLeftX - 10, topLeftY - 10, guiWidth + 10, guiHeight + 10);
 		applet.popMatrix();

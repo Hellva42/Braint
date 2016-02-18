@@ -1,7 +1,5 @@
 package Braint.drawMethods.agents;
 
-import java.util.Random;
-
 import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
 
 import Braint.emoEngine.EmoEngineOSCHandler;
@@ -123,8 +121,7 @@ public class BraintAgentParameterDeterminer {
 		braintAgentDraw.noiseStrength = strength;
 		braintAgentDraw.valueToRGB = color;
 		braintAgentDraw.rgb = BraintUtil.decideRGBValue(braintAgentDraw.valueToRGB, BigSettings.instance().colorMode);
-		
-		
+
 	}
 
 	public static void ovDetermineWithAlphaOnly(BraintAgentDraw braintAgentDraw, OpenVibeOscEEGPowerDataHandler data,

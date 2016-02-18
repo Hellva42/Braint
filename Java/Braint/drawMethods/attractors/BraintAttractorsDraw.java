@@ -4,6 +4,7 @@ import Braint.drawMethods.IProcessingDrawable;
 import Braint.main.BraintMainApplet;
 import GenerativeDesignSources.Attractor;
 import GenerativeDesignSources.Node;
+import processing.core.PConstants;
 import processing.core.PImage;
 
 public class BraintAttractorsDraw implements IProcessingDrawable {
@@ -115,9 +116,9 @@ public class BraintAttractorsDraw implements IProcessingDrawable {
 
 			for (BraintNode t : pixelNodes) {
 				if (applet.mousePressed) {
-					if (applet.mouseButton == applet.LEFT)
+					if (applet.mouseButton == PConstants.LEFT)
 						attractor.attract(t.getNode());
-					else if (applet.mouseButton == applet.RIGHT)
+					else if (applet.mouseButton == PConstants.RIGHT)
 						attractor2.attract(t.getNode());
 
 				}

@@ -2,6 +2,7 @@ package Braint.drawMethods.agents;
 
 import Braint.drawMethods.IProcessingDrawable;
 import Braint.main.BraintMainApplet;
+import Braint.settings.BigSettings;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -56,7 +57,7 @@ public class BraintAgent implements IProcessingDrawable {
 
 		}
 
-		float strokeWidth = 1;
+		float strokeWidth = BigSettings.instance().agentStrokeWidth;
 		applet.strokeWeight(strokeWidth * braintAgent.getStrokeWidthScale());
 		applet.stroke(braintAgent.getRGB());
 		applet.line(pOld.x, pOld.y, p.x, p.y);

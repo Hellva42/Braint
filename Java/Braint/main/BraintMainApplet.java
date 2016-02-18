@@ -1,6 +1,7 @@
 package Braint.main;
 
 import Braint.drawMethods.agents.BraintAgentDraw;
+import Braint.drawMethods.agents.FancyBraintAgentDraw;
 import Braint.drawMethods.attractors.BraintAttractorsDraw;
 import Braint.emoEngine.EmoEngineOSCHandler;
 import Braint.gui.InDrawingOverlay;
@@ -10,7 +11,6 @@ import Braint.openVibe.OpenVibeOscEEGPowerDataHandler;
 import Braint.settings.BigSettings;
 import Braint.util.BraintUtil;
 import Braint.util.XMLUtil;
-import netP5.NetAddress;
 import oscP5.OscMessage;
 import oscP5.OscP5;
 import processing.core.PApplet;
@@ -31,11 +31,13 @@ public class BraintMainApplet extends PApplet {
 	}
 
 	private boolean guiMode = true;
-	private boolean drawing = true;
+	private boolean drawing = false;
 	private boolean useEmoEngine = false;
 
 	private BraintAgentDraw braintAgent;
 	private BraintAttractorsDraw braintAttractors;
+
+	private FancyBraintAgentDraw fancyAgents;
 
 	private MainGui mainGUI;
 	private InDrawingOverlay testOverlay;
@@ -52,7 +54,14 @@ public class BraintMainApplet extends PApplet {
 	}
 
 	public void loadSettings() {
-		// TODO
+		// System.out.println(BigSettings.instance().CALIBRATION_TIME);
+		BigSettings.instance().setSettingsFromXML(XMLUtil.deserialzeObject(new BigSettings(), "testSettings"));
+		if(mainGUI != null)
+			mainGUI.reset();
+
+		mainGUI = new MainGui(openVibeCalibration, this);
+		mainGUI.setupDrawing(this);
+		mainGUI.setOpenVibeCalibration(openVibeCalibration);
 	}
 
 	@Override
@@ -77,7 +86,7 @@ public class BraintMainApplet extends PApplet {
 
 		// drawing methods
 		// TODO load dynamically based on button or some shit
-		braintAgent = new BraintAgentDraw();
+		braintAgent = new BraintAgentDraw(BigSettings.instance().agentCount * 120);
 		braintAgent.setupDrawing(this);
 
 		// todo set useOfThresholds
@@ -91,8 +100,7 @@ public class BraintMainApplet extends PApplet {
 		openVibeCalibration = new OpenVibeCalibration(openVibeAlphaBetaPower);
 		openVibeCalibration.setupDrawing(this);
 
-		mainGUI = new MainGui(openVibeCalibration, this);
-		mainGUI.setupDrawing(this);
+		loadSettings();
 		// mainGUI.setOpenVibeCalibration(openVibeCalibration);
 
 		testOverlay = new InDrawingOverlay();
@@ -100,6 +108,9 @@ public class BraintMainApplet extends PApplet {
 
 		// TODO load default settings and set them in the gui?!
 		// or use gui save properties for default?
+
+		fancyAgents = new FancyBraintAgentDraw(BigSettings.instance().agentCount * 120);
+		fancyAgents.setupDrawing(this);
 
 	}
 
@@ -147,6 +158,8 @@ public class BraintMainApplet extends PApplet {
 		} else if (drawing) {
 			mainGUI.hide();
 
+			// TODO!!!!!
+
 			if (BigSettings.instance().useAgents) {
 
 				braintAgent.useOpenVibe(BigSettings.instance().useOpenVibe);
@@ -171,20 +184,38 @@ public class BraintMainApplet extends PApplet {
 					testOverlay.updateAndDraw(this);
 				}
 
-			} else if (useAttractors) {
+			} else if (useAttractors && false) {
 				braintAttractors.updateAndDraw(this);
+			} else if (BigSettings.instance().useAgents2) {
+				fancyAgents.updateAndDraw(this);
+
+				if (BigSettings.instance().useOpenVibe) {
+					testOverlay.currentAlpha = "AlphaPower" + openVibeAlphaBetaPower.alpha.getMeanAllChannels();
+					testOverlay.currentBeta = "BetaPower" + openVibeAlphaBetaPower.beta.getMeanAllChannels();
+
+					testOverlay.updateAndDraw(this);
+				}
 			}
+
 		}
+	}
+
+	public void resetAgentDraw() {
+
+		if (BigSettings.instance().useAgents) {
+			braintAgent = new BraintAgentDraw(BigSettings.instance().agentCount * 120);
+			braintAgent.setupDrawing(this);
+		} else if (BigSettings.instance().useAgents2) {
+			fancyAgents = new FancyBraintAgentDraw(BigSettings.instance().agentCount * 120);
+			fancyAgents.setupDrawing(this);
+		}
+
 	}
 
 	@Override
 	public void keyPressed() {
 		if (key == 'r' || key == 'R') {
-			if (drawing) {
-				clear();
-				background(BigSettings.instance().backgroundColor);
-				// TODO reset agents???
-			}
+			resetDrawing();
 		} else if (key == ' ') {
 			System.out.println("ayy");
 			saveFrame("./snaps/snapshot_######.png");
@@ -193,31 +224,43 @@ public class BraintMainApplet extends PApplet {
 			drawing = false;
 			mainGUI.show();
 		} else if (key == 'x') {
-			XMLUtil.serializeObject(BigSettings.instance(), "testSettings");
+			saveSettings();
 		} else if (key == 'c') {
-			// System.out.println(BigSettings.instance().CALIBRATION_TIME);
-			BigSettings.instance().setSettingsFromXML(XMLUtil.deserialzeObject(new BigSettings(), "testSettings"));
-			mainGUI.reset();
-
-			mainGUI = new MainGui(openVibeCalibration, this);
-			mainGUI.setupDrawing(this);
-			mainGUI.setOpenVibeCalibration(openVibeCalibration);
+			if (!drawing) {
+				loadSettings();
+			}
 			//
 			// System.out.println(BigSettings.instance().CALIBRATION_TIME);
 
 			// XMLUtil.serializeObject(BigSettings.instance(), "testSettings");
 		} else if (key == 'e') {
-
-			mainGUI.hide();
-			clear();
-			background(BigSettings.instance().backgroundColor);
-//			braintAgent = new BraintAgentDraw();
-//			braintAgent.setupDrawing(this);
-			guiMode = false;
-			drawing = true;
+			startDrawing();
 		}
 
 		// TODO
+	}
+
+	public void resetDrawing() {
+		if (drawing) {
+			clear();
+			background(BigSettings.instance().backgroundColor);
+			resetAgentDraw();
+		}
+	}
+
+	public void startDrawing() {
+		mainGUI.hide();
+		clear();
+		background(BigSettings.instance().backgroundColor);
+		resetAgentDraw();
+		guiMode = false;
+		drawing = true;
+	}
+
+	public void saveSettings() {
+		if (!drawing) {
+			XMLUtil.serializeObject(BigSettings.instance(), "testSettings");
+		}
 	}
 
 	public void oscEvent(OscMessage theOscMessage) {

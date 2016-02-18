@@ -2,7 +2,6 @@ package Braint.gui;
 
 import Braint.drawMethods.IProcessingDrawable;
 import Braint.main.BraintMainApplet;
-import controlP5.ControlElement;
 import controlP5.ControlP5;
 import controlP5.Textlabel;
 

@@ -1,8 +1,10 @@
 <root>
-	<colorMode>2</colorMode>
+   <colorMode>2</colorMode>
+   <agenCount>63</agenCount>
+   <agentStrokeWidth>7.090909</agentStrokeWidth>
    <frameRate>128</frameRate>
    <OSCPort>12000</OSCPort>
-   <CalibrationTime>15</CalibrationTime>
+   <CalibrationTime>25</CalibrationTime>
    <openVibeAlphaSummary>
       <n>873</n>
       <secondMoment>
@@ -316,7 +318,8 @@
       </varianceImpl>
    </openVibeAlphaBetaRatioSummary>
    <backgroundColor>-16777216</backgroundColor>
-   <useAgentDrawMethod>true</useAgentDrawMethod>
+   <useAgentDrawMethod>false</useAgentDrawMethod>
+   <useAgentDrawMethod2>true</useAgentDrawMethod2>
    <useAttractorsDrawMethod>false</useAttractorsDrawMethod>
    <useEmoEngineData>false</useEmoEngineData>
    <useOpenVibeData>true</useOpenVibeData>
@@ -338,16 +341,16 @@
    <useAlphaBetaRatioForNoiseStrengthReversed>false</useAlphaBetaRatioForNoiseStrengthReversed>
    <useAlphaBetaRatioForColor>false</useAlphaBetaRatioForColor>
    <useAlphaBetaRatioForColorReversed>false</useAlphaBetaRatioForColorReversed>
-   <agentMaxNoiseScaleForPower>2.0270271</agentMaxNoiseScaleForPower>
+   <agentMaxNoiseScaleForPower>43.37838</agentMaxNoiseScaleForPower>
    <agentMinNoiseScaleForPower>0.8108108</agentMinNoiseScaleForPower>
-   <agentMaxNoiseStrengthForPower>2.0270271</agentMaxNoiseStrengthForPower>
+   <agentMaxNoiseStrengthForPower>43.783787</agentMaxNoiseStrengthForPower>
    <agentMinNoiseStrengthForPower>0.8108108</agentMinNoiseStrengthForPower>
-   <agentMaxColorValueForPower>2.0270271</agentMaxColorValueForPower>
+   <agentMaxColorValueForPower>42.972973</agentMaxColorValueForPower>
    <agentMinColorValueForPower>0.8108108</agentMinColorValueForPower>
-   <agentMaxNoiseScale>498.98648</agentMaxNoiseScale>
-   <agentMinNoiseScale>49.86487</agentMinNoiseScale>
-   <agentMaxNoiseStrength>26.108109</agentMaxNoiseStrength>
-   <agentMinNoiseStrength>6.0810814</agentMinNoiseStrength>
+   <agentMaxNoiseScale>471.0135</agentMaxNoiseScale>
+   <agentMinNoiseScale>71.62162</agentMinNoiseScale>
+   <agentMaxNoiseStrength>34.272972</agentMaxNoiseStrength>
+   <agentMinNoiseStrength>9.47027</agentMinNoiseStrength>
    <agentMaxColorValue>1.0</agentMaxColorValue>
    <agentMinColorValue>0.0</agentMinColorValue>
    <alphaChannelList2>
@@ -507,8 +510,176 @@
       <string>p8</string>
       <string>o1</string>
       <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
    </alphaChannelList2>
    <betaChannelList2>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
+      <string>af3</string>
+      <string>af4</string>
+      <string>f3</string>
+      <string>f4</string>
+      <string>f7</string>
+      <string>f8</string>
+      <string>fc6</string>
+      <string>fc5</string>
+      <string>p7</string>
+      <string>p8</string>
+      <string>o1</string>
+      <string>o2</string>
       <string>af3</string>
       <string>af4</string>
       <string>f3</string>

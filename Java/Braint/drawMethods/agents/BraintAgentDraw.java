@@ -1,15 +1,11 @@
 package Braint.drawMethods.agents;
 
-import java.util.Random;
-
-import org.apache.commons.math3.stat.descriptive.SummaryStatistics;
-
 import Braint.drawMethods.IProcessingDrawable;
 import Braint.main.BraintMainApplet;
 import Braint.openVibe.OpenVibeCalibration;
 import Braint.openVibe.OpenVibeOscEEGPowerDataHandler;
+import Braint.settings.BigSettings;
 import Braint.util.BraintUtil;
-import Braint.util.ThresholdBasedIntensity;
 
 /**
  * Created by Saitama on 18.01.2016.
@@ -31,7 +27,7 @@ public class BraintAgentDraw implements IProcessingDrawable {
 	 *            change angle properties of Agents Value between 6 and 30 is
 	 *            good
 	 */
-	BraintAgent[] agents = new BraintAgent[10000];
+	BraintAgent[] agents;
 
 	float strokeWidthScale;
 	float noiseScale, noiseStrength;
@@ -54,6 +50,11 @@ public class BraintAgentDraw implements IProcessingDrawable {
 
 	public void setIntensityThresholds(boolean useThresholds) {
 		this.useThresholds = useThresholds;
+	}
+	
+	
+	public  BraintAgentDraw(int size) {
+		agents = new BraintAgent[size];
 	}
 
 	@Override
@@ -167,7 +168,7 @@ public class BraintAgentDraw implements IProcessingDrawable {
 	public void updateAndDraw(BraintMainApplet applet) {
 		x++;
 
-		if (useOpenVibe) {
+		if (BigSettings.instance().useAgents) {
 			OpenVibeOscEEGPowerDataHandler data = applet.getPowerDataHandler();
 			OpenVibeCalibration calib = applet.getCalibrationData();
 
@@ -184,7 +185,7 @@ public class BraintAgentDraw implements IProcessingDrawable {
 			
 			BraintAgentParameterDeterminer.ovDetermineNoiseValues(this, data, calib);
 
-		} else if (useEmoEngine) {
+		} else if (BigSettings.instance().useEmoEngine) {
 
 			BraintAgentParameterDeterminer.determineBasedOnEmoEngine(this, applet.getEmoEngineHandler());
 

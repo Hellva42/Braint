@@ -86,8 +86,10 @@ public class BraintUtil {
 	 * @return hex value for stroke function todo: change mode 2
 	 */
 	static public int decideRGBValue(float value, int mode) {
+		
+		System.out.println(mode);
 
-		if (mode == 1) {
+		if (mode == 1) { //green
 			System.out.println("decide color rgb value" + value);
 			if (value < 0.1666f)
 				return 0xffccece6;
@@ -103,7 +105,7 @@ public class BraintUtil {
 				return 0xff006d2c;
 			return 0xff00441b;
 
-		} else if (mode == 2) {
+		} else if (mode == 2) { //red
 			if (value < 0.1666f)
 				return 0xfffdd49e;
 			if (value < 0.3333f)
@@ -118,9 +120,55 @@ public class BraintUtil {
 				return 0xffb30000;
 			return 0xff7f0000;
 
+		} else if (mode == 3) { //violett
+			if (value < 0.1666f)
+				return 0xffbfd3e6;
+			if (value < 0.3333f)
+				return 0xff9ebcda;
+			if (value < 0.5f)
+				return 0xff8c96c6;
+			if (value < 0.6666f)
+				return 0xff8c6bb1;
+			if (value < 0.8333f)
+				return 0xff88419d;
+			if (value < 1f)
+				return 0xff6e016b;
+			return 0xffedf8fb;
+
+		} else if (mode == 4) { //more pink than violett
+			if (value < 0.1666f)
+				return 0xffd4b9da;
+			if (value < 0.3333f)
+				return 0xffc994c7;
+			if (value < 0.5f)
+				return 0xffdf65b0;
+			if (value < 0.6666f)
+				return 0xffe7298a;
+			if (value < 0.8333f)
+				return 0xffce1256;
+			if (value < 1f)
+				return 0xff91003f;
+			return 0xfff1eef6;
+
+		} else if (mode == 5) { //blue
+			if (value < 0.1666f)
+				return 0xffc6dbef;
+			if (value < 0.3333f)
+				return 0xff9ecae1;
+			if (value < 0.5f)
+				return 0xff6baed6;
+			if (value < 0.6666f)
+				return 0xff4292c6;
+			if (value < 0.8333f)
+				return 0xff2171b5;
+			if (value < 1f)
+				return 0xff084594;
+			return 0xffeff3ff;
+
 		}
 
 		return 0;
+	
 	}
 	
 	

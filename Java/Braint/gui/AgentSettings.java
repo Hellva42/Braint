@@ -1,10 +1,5 @@
 package Braint.gui;
 
-import javax.sound.midi.ControllerEventListener;
-import javax.sound.midi.ShortMessage;
-
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-
 import Braint.main.BraintMainApplet;
 import Braint.settings.BigSettings;
 import controlP5.ControlElement;
@@ -30,6 +25,8 @@ public class AgentSettings implements ControlListener {
 
 	RadioButton scaleRadio;
 	RadioButton colorRadio;
+
+	RadioButton agentDrawMethod;
 
 	private final int w = MainGui.default_GUI_Element_Width;
 
@@ -200,10 +197,18 @@ public class AgentSettings implements ControlListener {
 				BigSettings.instance().useBetaForColor ? 1.0f : 0.0f,
 				BigSettings.instance().useAlphaBetaRatioForColor ? 1.0f : 0.0f });
 
+		agentDrawMethod = guiParent.addRadioButton("agentDrawMethod").setPosition(absoluteX + 6*w, absoluteY + 2 * h)
+				.setSize(40, 20)
+				// .setColorForeground(appletParent.color(120))
+				// .setColorActive(appletParent.color(255))
+				// .setColorLabel(appletParent.color(255))
+				.setItemsPerRow(2).setBarHeight(10).setItemHeight(10).setSpacingColumn(75).addItem("Method1", 1)
+				.addItem("Method2", 2);
+
+		agentDrawMethod.setArrayValue(new float[] { BigSettings.instance().useAgents ? 1.0f : 0.0f,
+				BigSettings.instance().useAgents2 ? 1.0f : 0.0f });
 
 		guiParent.addListener(this);
-
-
 
 	}
 
@@ -213,8 +218,6 @@ public class AgentSettings implements ControlListener {
 			|| BigSettings.instance().useAlphaBetaRatioForNoiseStrengthReversed;
 
 	public void reverseStrengthPower(boolean val) {
-
-
 
 		BigSettings.instance().useAlphaForNoiseStrengthReversed = val && BigSettings.instance().useAlphaForNoiseStrength
 				&& !BigSettings.instance().useBetaForNoiseStrength
@@ -237,8 +240,6 @@ public class AgentSettings implements ControlListener {
 
 	public void reverseScalePower(boolean val) {
 
-
-
 		BigSettings.instance().useAlphaForNoiseScaleReversed = val && BigSettings.instance().useAlphaForNoiseScale
 				&& !BigSettings.instance().useBetaForNoiseScale
 				&& !BigSettings.instance().useAlphaBetaRatioForNoiseScale;
@@ -260,7 +261,6 @@ public class AgentSettings implements ControlListener {
 
 	public void reverseColorPower(boolean val) {
 
-
 		BigSettings.instance().useAlphaForColorReversed = val && BigSettings.instance().useAlphaForColor
 				&& !BigSettings.instance().useBetaForColor && !BigSettings.instance().useAlphaBetaRatioForColor;
 
@@ -272,6 +272,7 @@ public class AgentSettings implements ControlListener {
 
 	}
 
+	@Override
 	public void controlEvent(ControlEvent theEvent) {
 		// System.out.println("WHAT?" + theEvent.getName());
 
@@ -316,6 +317,9 @@ public class AgentSettings implements ControlListener {
 					BigSettings.instance().useAlphaForColorReversed || BigSettings.instance().useBetaForColorReversed
 							|| BigSettings.instance().useAlphaBetaRatioForColorReversed);
 
+		} else if (theEvent.isFrom(agentDrawMethod)) {
+			BigSettings.instance().useAgents = theEvent.getGroup().getArrayValue()[0] == 1.0 ? true : false;
+			BigSettings.instance().useAgents2 = theEvent.getGroup().getArrayValue()[1] == 1.0 ? true : false;
 		}
 	}
 
@@ -351,8 +355,37 @@ public class AgentSettings implements ControlListener {
 
 	@ControlElement(x = 0, y = 28 * h, label = "ScaleMapping", properties = { "type=textlabel" })
 	String ScaleMapping = "Mapping of alpha & beta to noise Scale";
-	
+
 	@ControlElement(x = 0, y = 30 * h, label = "ColorMapping", properties = { "type=textlabel" })
 	String ColorMapping = "Mapping of alpha & beta to noise Color";
+	
+			
+	@ControlElement(x= 6* w, y= 3 * h, label = "Agent Count",properties = { "min=1",
+	"max=200" })
+	int agentCount = BigSettings.instance().agentCount;
+	public void agentCount(int val) {
+		BigSettings.instance().agentCount = val;
+		
+		
+	
+	}
+	
+	@ControlElement(x= 6* w, y= 4 * h, label = "Stroke Width",properties = { "min=1",
+	"max=10" })
+	float strokeWidth = BigSettings.instance().agentStrokeWidth;
+	public void strokeWidth(float val) {
+		BigSettings.instance().agentStrokeWidth = val;
+
+	}
+	
+	@ControlElement(x= 6* w, y= 5 * h, label = "Color Mode (Method1)",properties = { "min=1",
+	"max=5" })
+	int colorMode = BigSettings.instance().colorMode;
+	public void colorMode(int val) {
+
+		BigSettings.instance().colorMode = val;
+
+
+	}
 
 }

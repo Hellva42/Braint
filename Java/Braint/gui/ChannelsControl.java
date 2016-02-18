@@ -1,7 +1,5 @@
 package Braint.gui;
 
-import java.util.LinkedList;
-
 import Braint.main.BraintMainApplet;
 import Braint.settings.BigSettings;
 import controlP5.ControlElement;
