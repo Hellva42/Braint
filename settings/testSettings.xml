@@ -1,7 +1,11 @@
 <root>
    <colorMode>2</colorMode>
    <agenCount>63</agenCount>
+<<<<<<< HEAD
    <agentStrokeWidth>1.0</agentStrokeWidth>
+=======
+   <agentStrokeWidth>7.090909</agentStrokeWidth>
+>>>>>>> origin/Pille2
    <frameRate>128</frameRate>
    <OSCPort>12000</OSCPort>
    <CalibrationTime>25</CalibrationTime>
@@ -594,6 +598,7 @@
       <string>p8</string>
       <string>o1</string>
       <string>o2</string>
+<<<<<<< HEAD
       <string>af3</string>
       <string>af4</string>
       <string>f3</string>
@@ -606,6 +611,8 @@
       <string>p8</string>
       <string>o1</string>
       <string>o2</string>
+=======
+>>>>>>> origin/Pille2
    </alphaChannelList2>
    <betaChannelList2>
       <string>af3</string>
@@ -848,6 +855,7 @@
       <string>p8</string>
       <string>o1</string>
       <string>o2</string>
+<<<<<<< HEAD
       <string>af3</string>
       <string>af4</string>
       <string>f3</string>
@@ -860,6 +868,8 @@
       <string>p8</string>
       <string>o1</string>
       <string>o2</string>
+=======
+>>>>>>> origin/Pille2
    </betaChannelList2>
    <allChannelsList length="12">
       <string>o1</string>
