@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Java"/>
+	<classpathentry kind="src" path="settings"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/controlP5.jar"/>
+	<classpathentry kind="lib" path="libs/GenerativeDesign.jar"/>
+	<classpathentry kind="lib" path="libs/oscP5.jar"/>
+	<classpathentry kind="lib" path="libs/commons-math3-3.6/commons-math3-3.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="libs/commons-math3-3.6/commons-math3-3.6.jar"/>
+	<classpathentry kind="lib" path="libs/core.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/gluegen-rt-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/gluegen-rt-natives-linux-armv6hf.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/gluegen-rt-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/gluegen-rt-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/gluegen-rt-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/gluegen-rt-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/jogl-all-natives-linux-amd64.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/jogl-all-natives-linux-armv6hf.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/jogl-all-natives-linux-i586.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/jogl-all-natives-macosx-universal.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/jogl-all-natives-windows-amd64.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/jogl-all-natives-windows-i586.jar"/>
+	<classpathentry kind="lib" path="libs/opengl/jogl-all.jar"/>
+	<classpathentry kind="lib" path="libs/simpleXML/simple-xml-2.7.1.jar"/>
+	<classpathentry kind="lib" path="libs/simpleXML/stax-1.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/simpleXML/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="libs/simpleXML/xpp3-1.1.3_8.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
